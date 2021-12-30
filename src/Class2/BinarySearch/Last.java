@@ -16,6 +16,7 @@ Corner Cases
 What if A is null or A is array of zero length? We should return -1 in this case.
 
  */
+package Class2.BinarySearch;
 
 public class Last {
     public static int binarySearch(int[] array, int target){

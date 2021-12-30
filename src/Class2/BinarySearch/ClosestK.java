@@ -14,7 +14,7 @@ Examples
 A = {1, 2, 3}, T = 2, K = 3, return {2, 1, 3} or {2, 3, 1}
 A = {1, 4, 6, 8}, T = 3, K = 3, return {4, 1, 6}
  */
-
+package Class2.BinarySearch;
 import java.util.Arrays;
 
 

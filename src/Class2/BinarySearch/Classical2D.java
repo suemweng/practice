@@ -1,3 +1,5 @@
+package Class2.BinarySearch;
+
 /*Q2
 Given a 2D matrix that contains integers only, which each row is sorted in ascending order. The first element of next row is larger than (or equal to) the last element of previous row.
 

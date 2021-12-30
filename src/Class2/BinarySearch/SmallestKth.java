@@ -1,4 +1,9 @@
+
+package Class2.BinarySearch;
+
 import java.util.Arrays;
+
+
 
 public class SmallestKth {
 

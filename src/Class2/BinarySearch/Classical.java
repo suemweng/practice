@@ -51,6 +51,8 @@ public class Classical {
 
 */
 
+package Class2.BinarySearch;
+
 public class Classical {
 
     public static int binarySearch ( int[] arr, int target) {

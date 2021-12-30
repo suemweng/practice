@@ -15,7 +15,7 @@ A = {1, 2, 5, 9, 12, ......}, T = 7, return -1
 
  */
 
-
+package Class2.BinarySearch;
 import java.util.*;
 
 public class UnknownSize {
@@ -25,28 +25,25 @@ public class UnknownSize {
             return -1;
         }
 
-        int i = 0;
-        int p = 0;
+        int left = 0;
+        int right = 1;
 
-        while (dict.get(p) != null && target > (int) dict.get(p)  ) {
-                i++;
-                p = (int) Math.pow(2, i);
+        while (dict.get(right) != null && target > (int) dict.get(right)  ) {
+                left = right;
+                right *= 10;
 
             }
 
-
-        int left = (int) Math.pow(2, i - 1);
-        int right = (int) Math.pow(2, i);
 
         while (left <= right) {
             int mid = (left + right) / 2;
             if (dict.get(mid)==null || (int)dict.get(mid)>target) {
-                right = mid -1;
+                right = mid - 1;
             }
              else if ((int)dict.get(mid) == target) {
                 return mid;
             } else {
-                left = mid+1;
+                left = mid + 1;
             }
         }
 
@@ -68,7 +65,7 @@ public class UnknownSize {
 
 
 
-        int T = 17;
+        int T = 15;
         int i = binarySearch(dict, T);
         System.out.println(i);
     }

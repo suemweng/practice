@@ -1,4 +1,4 @@
-/* Q3
+package Class2.BinarySearch;/* Q3
 Given a target integer T and an integer array A sorted in ascending order, find the index i in A such that A[i] is closest to T.
 
 Assumptions
