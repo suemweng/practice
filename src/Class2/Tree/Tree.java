@@ -1,7 +1,7 @@
 package Class2.Tree;
 
-import java.util.LinkedList;
-import java.util.List;
+
+import java.util.*;
 
 public class Tree {
 
@@ -28,37 +28,49 @@ public class Tree {
         return newNode;
     }
 
+
     public static List<Integer> destructTree(TreeNode root) {
         List<Integer> keyList = new LinkedList<>();
         List<TreeNode> treeList = new LinkedList<>();
+
         // corner case
         if (root == null) {
             return keyList;
         }
 
-        keyList.add(root.key);
         treeList.add(root);
-        int index = 0;
+        int i = 0;
+        int max = 0;  // max is the index of last node that is not null
+        TreeNode curNode = null;
 
-        while(index < treeList.size()) {
-            TreeNode curNode = treeList.get(index);
-            if (curNode.left != null) {
-                keyList.add(curNode.left.key);
+        while(i <= max) {
+            curNode = treeList.get(i);
+            if (curNode == null) {
+                treeList.add(null);  // add left child
+                treeList.add(null);  // add right child
+            } else {
                 treeList.add(curNode.left);
-            } else {
-                keyList.add(null);
-            }
-
-            if (curNode.right != null) {
-                keyList.add(curNode.right.key);
+                if (curNode.left != null) {
+                    max = treeList.size() - 1;
+                }
                 treeList.add(curNode.right);
-            } else {
-                keyList.add(null);
+                if (curNode.right != null) {
+                    max = treeList.size() - 1;
+                }
             }
-            index++;
+            i++;
         }
 
-        // Trim the bottom level of null, return subList
-        return keyList.subList(0, keyList.lastIndexOf(treeList.get(--index).key) + 1);
+        // traverse treeList and copy key to keyList
+        for (i = 0; i <= max; i++) {
+            curNode = treeList.get(i);
+            if (curNode == null) {
+                keyList.add(null);
+            } else {
+                keyList.add(curNode.key);
+            }
+        }
+
+        return keyList;
     }
 }
