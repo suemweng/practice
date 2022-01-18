@@ -18,7 +18,7 @@ Corner Cases
 What if A is null or A is of zero length? We should return -1 in this case.
  */
 
-package Class1Beginner.BinarySeach;
+package Class2.BinarySearch;
 
 public class Shifted21 {
 
@@ -58,3 +58,6 @@ public class Shifted21 {
 
     }
 }
+
+// TC: O (log n)
+// SC: O (1)

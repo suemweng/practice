@@ -21,18 +21,47 @@ public class ListNode {
     }
 
     public void printList() {
-//        if (head == null) {
-//            System.out.println("Empty List");
-//            return;
-//        }
-
         System.out.println(this.value);
         ListNode cur = next;
         while (cur != null) {
             System.out.println(cur.value);
             cur = cur.next;
         }
+    }
 
+    public int length() {
+        int length = 1;
+        ListNode cur = next;
+        while (cur != null) {
+            length++;
+            cur = cur.next;
+        }
+        return length;
+    }
 
+    public ListNode get(int index) {
+        if (index == 0) return this;
+        ListNode cur = next;
+        while (index > 1 && cur != null) {
+            index--;
+            cur = cur.next;
+        }
+        return cur;
+    }
+
+    public ListNode appendHead(int value) {
+        ListNode newNode = new ListNode(value);
+
+        newNode.next = this;
+        return newNode;
+    }
+
+    public void appendTail(int value) {
+        ListNode newNode = new ListNode(value);
+        ListNode pre = this;
+        while(pre.next != null) {
+            pre = pre.next;
+        }
+        pre.next = newNode;
     }
 }

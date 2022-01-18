@@ -1,7 +1,5 @@
 package Class2.LinkedList;
 
-import Class1Beginner.LinkedList.Cycle38;
-
 public class Cycle {
 
     public boolean hasCycle(ListNode head) {

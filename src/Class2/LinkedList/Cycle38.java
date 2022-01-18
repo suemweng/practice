@@ -3,7 +3,9 @@
     Check if a given linked list has a cycle. Return the node where the cycle starts. Return null if there is no cycle.
 
  */
-package Class1Beginner.LinkedList;
+package Class2.LinkedList;
+
+
 
 public class Cycle38 {
     public ListNode cycleNode(ListNode head) {

@@ -21,21 +21,19 @@ public class MissingII69 {
     public int missing(int[] array) {
         // Write your solution here
         // corner case
-        if (array.length == 0) return 1;
+        if (array == null || array.length == 0 || array[0] != 1) return 1;
 
         int left = 0;
         int right = array.length - 1;
-        while (left < right - 1) {
+
+        while (left <= right) {
             int mid = left + (right - left) / 2;
-            if (array[mid] - mid == 1) {
-                left = mid;
-            } else {
-                right = mid;
-            }
+            if (array[mid] - mid == 1) left = mid + 1;
+            else right = mid - 1;
         }
-        if (array[left] - left > 1) return 1;
-        if (array[right] - right == 1) return array[right] + 1;
-        return array[left] + 1;
+
+        return array[right] + 1;
+
     }
 
     public static void main(String[] args) {
