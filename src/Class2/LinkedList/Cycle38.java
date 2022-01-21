@@ -39,8 +39,8 @@ public class Cycle38 {
 
     public static void main(String[] args) {
         int[] array = {12,2,6,9,3,1,22,5,222,-1,33,66};
-        ListNode list = ListNode.createList(array);
-        ListNode one = list;
+        ListNode head = ListNode.createList(array);
+        ListNode one = head;
         for(int i = 0; i < 5; i++) {
             one = one.next;
         }
@@ -53,7 +53,7 @@ public class Cycle38 {
         two.next = one;
         System.out.println(two.next.value);
         Cycle38 solution = new Cycle38();
-        ListNode found = solution.cycleNode(list);
+        ListNode found = solution.cycleNode(head);
         System.out.println(found.value);
     }
 }

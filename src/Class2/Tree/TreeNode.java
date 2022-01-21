@@ -1,5 +1,8 @@
 package Class2.Tree;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class TreeNode {
     int key;
     TreeNode left;
@@ -31,8 +34,6 @@ public class TreeNode {
         return newNode;
 
     }
-
-
 
 
 }

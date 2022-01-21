@@ -73,4 +73,20 @@ public class Tree {
 
         return keyList;
     }
+
+    public static void print(TreeNode root) {
+        if (root ==  null) {
+            System.out.println("The root is null. No tree printed");
+        }
+        print("", root, false);
+
+    }
+
+    public static void print(String prefix, TreeNode n, boolean isLeft) {
+        if (n != null) {
+            print(prefix + "     ", n.right, false);
+            System.out.println (prefix + ("|-- ") + n.key);
+            print(prefix + "     ", n.left, true);
+        }
+    }
 }

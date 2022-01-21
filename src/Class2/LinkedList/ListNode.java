@@ -21,12 +21,13 @@ public class ListNode {
     }
 
     public void printList() {
-        System.out.println(this.value);
+        System.out.print(this.value + " --> ");
         ListNode cur = next;
         while (cur != null) {
-            System.out.println(cur.value);
+            System.out.print(cur.value + " --> ");
             cur = cur.next;
         }
+        System.out.println("null");
     }
 
     public int length() {

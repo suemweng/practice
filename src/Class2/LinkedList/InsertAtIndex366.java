@@ -44,9 +44,9 @@ public class InsertAtIndex366 {
         int[] array = {1,2};
         int index = 3;
         int value = 4;
-        ListNode list = ListNode.createList(array);
-        list = solution.insert(list, index, value);
-        list.printList();
+        ListNode head = ListNode.createList(array);
+        head = solution.insert(head, index, value);
+        head.printList();
 
     }
 }

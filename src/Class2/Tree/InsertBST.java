@@ -33,7 +33,7 @@ public class InsertBST {
             if (cur.key < target) {
                 if (cur.right == null) {
                     cur.right = newNode;
-                    break;
+                    break;    // it's ok without break, the loop will be run one more time and stop
                 } else {
                     cur = cur.right;
                 }

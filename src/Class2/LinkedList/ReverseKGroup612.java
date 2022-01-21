@@ -49,7 +49,8 @@ public class ReverseKGroup612 {
     public static void main(String[] args) {
         int[] array = {1,2,3,4,5,6,7,8};
         int k = 5;
-        ListNode head = ListNode.createList(array);
+        ListNode head = null;
+        head = head.createList(array);
         // testing ListNode methods
         System.out.println("length = " + head.length());
         System.out.println("Get node: " + head.get(6).value);
