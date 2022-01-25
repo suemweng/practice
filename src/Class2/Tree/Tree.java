@@ -4,78 +4,74 @@ package Class2.Tree;
 import java.util.*;
 
 public class Tree {
+    // read left / right value by pairs
+    // queue top points to the parent node of current pair of child nodes in array
 
     public static TreeNode constructTree(Integer[] array) {
-        // corner case
-        if (array == null || array.length == 0) {
+
+        if (array == null || array.length == 0 || array[0] == null) {
             return null;
         }
 
-        return constructTree(array, 0);
+        TreeNode root = new TreeNode(array[0]);
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.offer(root);
 
-    }
+        for (int i = 1; i < array.length; i++) {
+            TreeNode cur = queue.poll();
+            if (array[i] != null) {
+                TreeNode left = new TreeNode(array[i]);
+                cur.left = left;
+                queue.add(left);
+            }
 
-    private static TreeNode constructTree(Integer[] array, int index) {
-        // base case
-        if (index >= array.length || array[index] == null) {
-            return null;
+            if (array[++i] != null) {
+                TreeNode right = new TreeNode(array[i]);
+                cur.right = right;
+                queue.add(right);
+            }
         }
-
-        TreeNode newNode = new TreeNode(array[index]);
-        newNode.left = constructTree(array, index * 2 + 1);
-        newNode.right = constructTree(array, index * 2 + 2);
-
-        return newNode;
+        return root;
     }
 
-
+    // queue to store valid output node
+    // there will be null node, so queue cannot use ArrayDeque
+    // reverse order: tree --> queue --> list
+    // 只要parent node valid，both child nodes need to be printed
     public static List<Integer> destructTree(TreeNode root) {
-        List<Integer> keyList = new LinkedList<>();
-        List<TreeNode> treeList = new LinkedList<>();
 
-        // corner case
+        List<Integer> list = new ArrayList<>();
         if (root == null) {
-            return keyList;
+            return list;
         }
 
-        treeList.add(root);
-        int i = 0;
-        int max = 0;  // max is the index of last node that is not null
-        TreeNode curNode = null;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        int nullNum = 0;
 
-        while(i <= max) {
-            curNode = treeList.get(i);
-            if (curNode == null) {
-                treeList.add(null);  // add left child
-                treeList.add(null);  // add right child
-            } else {
-                treeList.add(curNode.left);
-                if (curNode.left != null) {
-                    max = treeList.size() - 1;
+        while (!queue.isEmpty() && queue.size() != nullNum) {
+            TreeNode cur = queue.poll();
+            if (cur != null) {
+                list.add(cur.key);
+                queue.offer(cur.left);
+                queue.offer(cur.right);
+                if (cur.left == null) {
+                    nullNum++;
                 }
-                treeList.add(curNode.right);
-                if (curNode.right != null) {
-                    max = treeList.size() - 1;
+                if (cur.right == null) {
+                    nullNum++;
                 }
-            }
-            i++;
-        }
-
-        // traverse treeList and copy key to keyList
-        for (i = 0; i <= max; i++) {
-            curNode = treeList.get(i);
-            if (curNode == null) {
-                keyList.add(null);
             } else {
-                keyList.add(curNode.key);
+                list.add(null);
+                nullNum--;
             }
         }
-
-        return keyList;
+        return list;
     }
+
 
     public static void print(TreeNode root) {
-        if (root ==  null) {
+        if (root == null) {
             System.out.println("The root is null. No tree printed");
         }
         print("", root, false);
@@ -85,8 +81,10 @@ public class Tree {
     public static void print(String prefix, TreeNode n, boolean isLeft) {
         if (n != null) {
             print(prefix + "     ", n.right, false);
-            System.out.println (prefix + ("|-- ") + n.key);
+            System.out.println(prefix + ("|-- ") + n.key);
             print(prefix + "     ", n.left, true);
         }
     }
 }
+
+

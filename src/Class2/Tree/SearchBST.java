@@ -35,8 +35,9 @@ public class SearchBST {
 
     public static void main(String[] args) {
         SearchBST solution = new SearchBST();
-        Integer[] array = {10,5,15,null,8,14,16,null,null,6,9};
+        Integer[] array = {10,5,15,null,8,14,16,6,9};
         TreeNode root = Tree.constructTree(array);
+        Tree.print(root);
         int target = 7;
         TreeNode result = solution.searchRecursive(root, target);
         if (result == null) {

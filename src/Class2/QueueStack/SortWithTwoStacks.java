@@ -9,11 +9,11 @@ public class SortWithTwoStacks {
 
         while (!s1.isEmpty()) {
             int min = Integer.MAX_VALUE;
-            int count = 1;
+            int count = 0;
             // count
             while (!s1.isEmpty()) {
-                int value = s1.pop();
-                s2.push(value);
+                int value = s1.pollFirst();
+                s2.offerFirst(value);
                 if (value == min) {
                     count++;
                 } else if (value < min) {
@@ -22,18 +22,18 @@ public class SortWithTwoStacks {
                 }
             }
             //pop
-            while (s2.peek() != null && s2.peek() >= min) {
-                if (s2.peek() == min) {
-                    s2.pop();
+            while (!s2.isEmpty() && s2.peekFirst() >= min) {
+                if (s2.peekFirst() == min) {
+                    s2.pollFirst();
                 } else {
-                    s1.push(s2.pop());
+                    s1.offerFirst(s2.pollFirst());
                 }
             }
 
             //save min as result
 
             while (count > 0) {
-                s2.push(min);
+                s2.offerFirst(min);
                 count--;
             }
 
@@ -42,7 +42,7 @@ public class SortWithTwoStacks {
 
 
         while (!s2.isEmpty()) {
-            s1.push(s2.pop());
+            s1.offerFirst(s2.pollFirst());
         }
     }
 
