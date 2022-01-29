@@ -25,7 +25,7 @@ public class KthSmallest {
     }
 
     // maxHeap
-    // TC: klogk + (n-k)logk + klog
+    // TC: klogk + (n-k)logk + klogk
     // SC: O(k)
 
     public int[] kthSmallestMax(int[] array, int k) {

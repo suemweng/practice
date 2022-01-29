@@ -5,28 +5,32 @@ import java.util.*;
 public class CoinsCombinations {
 
     public List<List<Integer>> combinations(int target, int[] coins) {
-        // Write your solution here
+
         List<List<Integer>> list = new ArrayList<List<Integer>>();
-        List<Integer> coinsList = new ArrayList<Integer>();
-        helper(target, coins, 0, list, coinsList);
+        if (coins == null || coins.length == 0) {
+            return list;
+        }
+        List<Integer> solution = new ArrayList<>();
+        combinations(target, coins, 0, solution, list);
         return list;
     }
 
-    private void helper(int moneyLeft, int[] coins, int index, List<List<Integer>> list,
-                        List<Integer> coinsList) {
+    private void combinations(int moneyLeft, int[] coins, int index, List<Integer> solution,
+                              List<List<Integer>> list) {
         // base case
-        if (index == coins.length) {
-            if (moneyLeft == 0) {
-                list.add(new ArrayList<Integer>(coinsList));
+        if (index == coins.length  - 1) {
+            if (moneyLeft % coins[index] == 0) {
+                solution.add (moneyLeft / coins[index]);
+                list.add(new ArrayList<Integer>(solution));
+                solution.remove(solution.size() - 1);
             }
             return;
         }
 
-        // recursive
-        for (int i = 0; i < moneyLeft / coins[index] + 1; i++) {
-            coinsList.add(i);
-            helper(moneyLeft - i * coins[index], coins, index + 1, list, coinsList);
-            coinsList.remove(index);
+        for (int i = 0; i <= moneyLeft / coins[index]; i++) {
+            solution.add(i);
+            combinations(moneyLeft - i * coins[index], coins, index + 1, solution ,list);
+            solution.remove(solution.size() - 1);
         }
     }
 

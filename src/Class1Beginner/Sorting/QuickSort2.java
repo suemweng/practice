@@ -6,10 +6,9 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class QuickSort2 {
-    private Random random = new Random();
 
     public void quickSort2(int[] array) {
-        // corner case
+        // corner case -- check null first
         if (array == null || array.length == 0) return;
 
         quickSort2(array,0,array.length - 1);
@@ -20,14 +19,17 @@ public class QuickSort2 {
         // base case
         if (left >= right) return;
 
-        // choose a random pivot
-        int pivotIndex = left + random.nextInt(right - left + 1);
+        // define a pivot and use the pivot to partition the array
+        // pivot is already at its position, when we do our recursive call on the two partitions
+        // pivot should not be included in any of them
+        // this is one of the ways to define the pivot, pick random element in the range of [left, right]
+        int pivotIndex = left + (int) Math.random() * (right - left + 1);
         int pivotValue = array[pivotIndex];
 
 
         // partition with rainbow sort
-        int i = 0; // head of group, equal to pivotValue
-        int j = 0; // head of range to be partitioned
+        int i = left; // head of group, equal to pivotValue
+        int j = left; // head of range to be partitioned
         int k = right; // end of range to be partitioned
 
         while (j <= k) {

@@ -35,10 +35,10 @@ public class AllSubsets {
 
     public static void main(String[] args) {
         AllSubsets solution = new AllSubsets();
-        String set = "abc";
+        String set = "";
         List<String> result = solution.subSets(set);
         System.out.println(result);
     }
 }
-// TC O(2^n * n)  ?? * n is the time of .toString
-// Sc O(n)
+// TC O(2^n * n)  --  * n is the time of .toString()
+// Sc O(n) -- O(n) on heap and O(n) on call stack

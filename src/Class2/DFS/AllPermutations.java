@@ -43,7 +43,7 @@ public class AllPermutations {
 
     public static void main(String[] args){
         AllPermutations solution = new AllPermutations();
-        String input = "";
+        String input = "abc";
         List<String> result = solution.permutations(input);
         System.out.println(result);
     }
