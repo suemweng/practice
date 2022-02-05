@@ -1,8 +1,15 @@
+/**
+ * Reverse a singly linked list recursively
+ */
+
 package Class1Beginner.LinkedList;
 
 public class ReverseRecursion {
     // Recursion
     public static ListNode reverseRecursion(ListNode head) {
+        // be careful about the base case
+        // need to make sure the later head.next != null
+
         // base case
         if (head == null || head.next == null) return head;
 
@@ -23,3 +30,6 @@ public class ReverseRecursion {
         newList.printList();
     }
 }
+
+// TC: O(n)
+// SC: O(n)

@@ -26,4 +26,4 @@ public class InOrder {
 }
 
 // TC: O(n)
-// SC: wc O(n) avg O(logn)
+// SC: O(height) -- wc O(n) avg O(logn)

@@ -25,7 +25,7 @@ public class Tree {
                 queue.add(left);
             }
 
-            if (array[++i] != null) {
+            if (i < array.length - 1 && array[++i] != null) {
                 TreeNode right = new TreeNode(array[i]);
                 cur.right = right;
                 queue.add(right);
@@ -78,7 +78,7 @@ public class Tree {
 
     }
 
-    public static void print(String prefix, TreeNode n, boolean isLeft) {
+    private static void print(String prefix, TreeNode n, boolean isLeft) {
         if (n != null) {
             print(prefix + "     ", n.right, false);
             System.out.println(prefix + ("|-- ") + n.key);

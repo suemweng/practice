@@ -3,6 +3,10 @@ package Class2.DFS;
 import java.util.*;
 
 public class ParenthesesPermutations {
+    // n stores the total number of "pairs of () " need to add, so total levels == 2 * n
+    // left stores the number of left parenthesis "(" added so far
+    // right stores the number of right parenthesis ")" added so far
+    // prefix: solution so far
 
     public List<String> validParentheses(int n) {
 
@@ -19,11 +23,14 @@ public class ParenthesesPermutations {
             return;
         }
 
+        // case 1: add "(" at this level
         if (left < pairs) {
             prefix.append("(");
             helper(pairs, left + 1, right, prefix, list);
             prefix.deleteCharAt(prefix.length() - 1);
         }
+
+        // case 2: add ")" at this level
         if (left > right) {
             prefix.append(")");
             helper(pairs, left, right + 1, prefix, list);
@@ -38,5 +45,5 @@ public class ParenthesesPermutations {
         System.out.println(result);
     }
 }
-// TC: 2 ^ 2n
+// TC: 2 ^ 2n * n -- time for .toString
 // SC: 2n
