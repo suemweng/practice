@@ -21,7 +21,7 @@ public class CoinsCombinations {
         if (index == coins.length  - 1) {
             if (moneyLeft % coins[index] == 0) {
                 solution.add (moneyLeft / coins[index]);
-                list.add(new ArrayList<Integer>(solution));
+                list.add(new ArrayList<>(solution));
                 solution.remove(solution.size() - 1);
             }
             return;
