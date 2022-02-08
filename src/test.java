@@ -7,22 +7,10 @@ class Test {
 
 
     public static void main(String[] args) {
-        Test solution = new Test();
-        Dictionary<Integer,Integer> dict = new Hashtable<Integer,Integer>();
-        dict.put(0,1);
-        dict.put(1,3);
-        dict.put(2,4);
-        dict.put(3,4);
-        dict.put(4,6);
-        dict.put(5,10);
-        dict.put(6,11);
-        dict.put(7,12);
-        dict.put(8,15);
-        dict.put(9,15);
-
-        int T = 6;
-        int i = solution.search(dict, T);
-        System.out.println(i);
+        StringBuilder sb = new StringBuilder();
+        sb.append(1);
+        sb.append(0);
+        System.out.println(sb);
     }
 
     public int search(Dictionary dict, int target) {

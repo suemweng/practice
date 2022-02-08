@@ -4,9 +4,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class TreeNode {
-    int key;
-    TreeNode left;
-    TreeNode right;
+    public int key;
+    public TreeNode left;
+    public TreeNode right;
 
     public TreeNode(int key) {
         this.key = key;

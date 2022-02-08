@@ -1,40 +1,54 @@
+/**
+ * Laicode 66. All Valid Permutations Of Parentheses I
+ *
+ * Given N pairs of parentheses “()”, return a list with all the valid permutations.
+ *
+ * Assumptions
+ *
+ * N > 0
+ * Examples
+ *
+ * N = 1, all valid permutations are ["()"]
+ * N = 3, all valid permutations are ["((()))", "(()())", "(())()", "()(())", "()()()"]
+ */
+
 package Class2.DFS;
 
 import java.util.*;
 
 public class ParenthesesPermutations {
     // n stores the total number of "pairs of () " need to add, so total levels == 2 * n
-    // left stores the number of left parenthesis "(" added so far
-    // right stores the number of right parenthesis ")" added so far
-    // prefix: solution so far
+    // left: the number of left parenthesis "(" added so far
+    // right: the number of right parenthesis ")" added so far
+    // index: the current position in array we want to fill in with either '(' or ')'
 
     public List<String> validParentheses(int n) {
 
         List<String> list = new ArrayList<>();
-        StringBuilder prefix = new StringBuilder();
+        // the final string contains 2n characters
+        char[] array = new char[n * 2];
 
-        helper(n, 0, 0, prefix, list);
+        helper(array, 0, 0, 0, list);
         return list;
     }
 
-    private void helper(int pairs, int left, int right, StringBuilder prefix, List<String> list) {
-        if (right == pairs) {
-            list.add(prefix.toString());
+    private void helper(char[] array, int index, int left, int right, List<String> list) {
+        if (index == array.length - 1) {
+            array[index] = ')';
+            list.add(new String(array));
             return;
         }
 
         // case 1: add "(" at this level
-        if (left < pairs) {
-            prefix.append("(");
-            helper(pairs, left + 1, right, prefix, list);
-            prefix.deleteCharAt(prefix.length() - 1);
+        if (left < array.length / 2) {
+            array[index] = '(';
+            helper(array, index + 1, left + 1, right, list);
         }
 
         // case 2: add ")" at this level
         if (left > right) {
-            prefix.append(")");
-            helper(pairs, left, right + 1, prefix, list);
-            prefix.deleteCharAt(prefix.length() - 1);
+            array[index] = ')';
+            helper(array, index + 1, left, right + 1, list);
         }
     }
 
@@ -45,5 +59,5 @@ public class ParenthesesPermutations {
         System.out.println(result);
     }
 }
-// TC: 2 ^ 2n * n -- time for .toString
-// SC: 2n
+// TC: O(2 ^ 2n)
+// SC: O(2n)  -- call stack and array
