@@ -1,19 +1,35 @@
+/**
+ * Laicode 26. Kth Smallest Number In Sorted Matrix
+ *
+ * Given a matrix of size N x M. For each row the elements are sorted in ascending order, and for each column the elements are also sorted in ascending order. Find the Kth smallest number in it.
+ *
+ * Assumptions
+ *
+ * the matrix is not null, N > 0 and M > 0
+ * K > 0 and K <= N * M
+ * Examples
+ *
+ * { {1,  3,   5,  7},
+ *
+ *   {2,  4,   8,   9},
+ *
+ *   {3,  5, 11, 15},
+ *
+ *   {6,  8, 13, 18} }
+ *
+ * the 5th smallest number is 4
+ * the 8th smallest number is 6
+ */
 
-import java.util.*;
-import java.lang.Math;
+package Class2.BFS;
 
+import java.util.PriorityQueue;
+import java.util.Comparator;
 
-class Test {
-
-
-    public static void main(String[] args) {
-        String temp = "";
-        char[] array = temp.toCharArray();
-        System.out.println(array.length);
-    }
+public class KthSmallest {
 
     public int kthSmallest(int[][] matrix, int k) {
-        // Write your solution here
+
         class Cell{
             int row;
             int col;
@@ -55,9 +71,20 @@ class Test {
                 minHeap.offer(new Cell(cur.row, cur.col + 1, matrix[cur.row][cur.col + 1]));
                 visited[cur.row][cur.col + 1] = true;
             }
+            k--;
         }
 
         return minHeap.poll().val;
     }
+
+    public static void main(String[] args) {
+        KthSmallest obj = new KthSmallest();
+        int[][] matrix = {{1,2,3,4},{11,12,13,14},{15,16,17,18},{19,20,21,22}};
+        int k = 4;
+        int smallest = obj.kthSmallest(matrix, k);
+        System.out.println(smallest);
+    }
 }
 
+// TC: O(klogk) -- heap.offer() logk
+// SC: O(mn + k) -- visited[][] + heap

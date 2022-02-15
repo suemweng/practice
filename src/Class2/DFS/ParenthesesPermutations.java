@@ -26,7 +26,7 @@ public class ParenthesesPermutations {
 
         List<String> list = new ArrayList<>();
         // the final string contains 2n characters
-        char[] array = new char[n * 2];
+        char[] array = new char[n * 2];             // error: new char[n * 2 - 1]
 
         helper(array, 0, 0, 0, list);
         return list;

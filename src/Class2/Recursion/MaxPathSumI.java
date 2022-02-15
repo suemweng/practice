@@ -1,7 +1,7 @@
 /**
  * Laicode 138. Maximum Path Sum Binary Tree I
  *
- * Given a binary tree in which each node contains an integer number. Find the maximum possible sum from one leaf node to another leaf node. If there is no such path available, return Integer.MIN_VALUE(Java)/INT_MIN (C++).
+ * Given a binary tree in which each node contains an integer number. Find the maximum possible sum "from one leaf node to another leaf node". If there is no such path available, return Integer.MIN_VALUE(Java)/INT_MIN (C++).
  *
  * Examples
  *
@@ -55,11 +55,6 @@ import Class2.Tree.TreeNode;
 public class MaxPathSumI {
 
     public int maxPathSum(TreeNode root) {
-        // Write your solution here
-        // corner case
-        if (root == null) {
-            return Integer.MIN_VALUE;
-        }
 
         int[] max = {Integer.MIN_VALUE};
         helper(root, max);
@@ -71,11 +66,6 @@ public class MaxPathSumI {
         if (root == null) {
             return 0;
         }
-
-        if (root.left == null && root.right == null) {
-            return root.key;
-        }
-
 
         int leftNum = helper(root.left, max);
         int rightNum = helper(root.right, max);
@@ -106,3 +96,4 @@ public class MaxPathSumI {
 }
 
 // TC: O(n)
+// SC: O(height)

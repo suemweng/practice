@@ -44,7 +44,7 @@ public class NQueens {
         // base case
         // when all the rows we know where the queens are positioned
         if (curList.size() == n) {
-            list.add(new ArrayList<>(curList));
+            list.add(new ArrayList<>(curList));    // error: forgot to add and how to add
             return;
         }
 

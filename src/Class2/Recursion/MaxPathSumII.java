@@ -5,7 +5,7 @@
  *
  * Assumptions
  *
- * ​The root of the given binary tree is not null
+ * The root of the given binary tree is not null
  * Examples
  *
  *    -1
@@ -67,6 +67,7 @@ public class MaxPathSumII {
         leftSum = leftSum < 0 ? 0 : leftSum;
         rightSum = rightSum < 0 ? 0 : rightSum;
 
+        // max of current root vs max[0]
         max[0] = Math.max(max[0], leftSum + rightSum + root.key);
 
         return Math.max(leftSum, rightSum) + root.key;
