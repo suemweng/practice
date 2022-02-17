@@ -28,10 +28,10 @@ public class AllPermutationsII {
             return result;
         }
 
-        if (input.length() == 0) {
+/*        if (input.length() == 0) {
             result.add("");
             return result;
-        }
+        }*/
 
         // call helper function
         char[] array = input.toCharArray();
@@ -44,8 +44,9 @@ public class AllPermutationsII {
     private void helper(int index, char[] array, List<String> result) {
         // base case
         // index == n - 1, no more option
-        if (index == array.length - 1) {
+        if (index == array.length) {
             result.add(new String(array));
+            return;                             // error: forgot to return, bad habit
         }
 
         // sub-problem
@@ -72,10 +73,10 @@ public class AllPermutationsII {
     public static void main(String[] args) {
         AllPermutationsII obj = new AllPermutationsII();
 
-        String input = "aba";
+        String input = "";
         System.out.println(obj.permutations(input));
     }
 }
 
 // TC: O(n! * n) -- set.add() O(n)
-// SC: O(n ^ 2)
+// SC: O(n ^ 2)  -- new a set on each level
