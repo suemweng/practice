@@ -1,7 +1,10 @@
 
+import Class2.Practice17_2;
+
 import java.util.*;
 import java.lang.Math;
 
+import Class2.Practice17_2.*;
 
 class Test {
 
@@ -10,6 +13,7 @@ class Test {
         String temp = "";
         char[] array = temp.toCharArray();
         System.out.println(array.length);
+
     }
 
     public int kthSmallest(int[][] matrix, int k) {
