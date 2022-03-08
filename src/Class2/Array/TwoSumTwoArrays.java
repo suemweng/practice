@@ -13,7 +13,7 @@ A = {1, 3, 5}, B = {2, 8}, target = 6, return false
 
  */
 
-package Class2.Cross;
+package Class2.Array;
 
 public class TwoSumTwoArrays {
 

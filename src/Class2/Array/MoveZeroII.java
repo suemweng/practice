@@ -14,7 +14,7 @@
  * {1, 0, 3, 0, 1} --> {1, 3, 1, 0, 0}
  */
 
-package Class2.Cross;
+package Class2.Array;
 
 import java.util.Arrays;
 

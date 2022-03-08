@@ -28,11 +28,6 @@ public class AllPermutationsII {
             return result;
         }
 
-/*        if (input.length() == 0) {
-            result.add("");
-            return result;
-        }*/
-
         // call helper function
         char[] array = input.toCharArray();
         helper(0, array, result);
@@ -63,6 +58,7 @@ public class AllPermutationsII {
 
         }
     }
+
 
     private void swap(char[] array, int i, int j) {
         char temp = array[i];
