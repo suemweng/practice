@@ -6,6 +6,9 @@ import java.util.HashSet;
 
 public class DictionaryWord {
 
+    // highlight: dp[i] + calculation
+    //            break loop after one possibility is found
+
     public boolean canBreak(String input, String[] dict) {
         // Assumptions:
         // input is not null or empty
@@ -18,11 +21,11 @@ public class DictionaryWord {
         boolean[] dp = new boolean[input.length() + 1];
         dp[0] = true;
 
-        // Outer loop: calculate M[i]
+        // Outer loop: calculate dp[i]
         // Inner loop: i cases of cutting position
         for (int i = 1; i < dp.length; i++ ) {
             for (int j = 0; j < i; j++) {
-                // first j letter to check m[]
+                // first j letter to check dp[]
                 if (dp[j] && dictSet.contains(input.substring(j, i))) {
                     // substring begins at index j and extends to index i - 1
                     dp[i] = true;
