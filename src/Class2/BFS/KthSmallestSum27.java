@@ -17,7 +17,7 @@
  * 5th smallest s is 3 + 8 = 11
  */
 
-package Class2.QueueStack;
+package Class2.BFS;
 
 import java.util.*;
 

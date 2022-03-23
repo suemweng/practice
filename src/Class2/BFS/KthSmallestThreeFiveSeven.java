@@ -14,9 +14,7 @@
  * the 5th smallest is 3 ^ 3 * 5 * 7 = 945
  */
 
-package Class2.QueueStack;
-
-import Class2.BinarySearch.KthSmallestTwoSortedArray;
+package Class2.BFS;
 
 import java.util.HashSet;
 import java.util.PriorityQueue;

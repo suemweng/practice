@@ -1,90 +1,119 @@
-/**
- * Laicode 26. Kth Smallest Number In Sorted Matrix
- *
- * Given a matrix of size N x M. For each row the elements are sorted in ascending order, and for each column the elements are also sorted in ascending order. Find the Kth smallest number in it.
- *
- * Assumptions
- *
- * the matrix is not null, N > 0 and M > 0
- * K > 0 and K <= N * M
- * Examples
- *
- * { {1,  3,   5,  7},
- *
- *   {2,  4,   8,   9},
- *
- *   {3,  5, 11, 15},
- *
- *   {6,  8, 13, 18} }
- *
- * the 5th smallest number is 4
- * the 8th smallest number is 6
- */
-
 package Class2.BFS;
 
-import java.util.PriorityQueue;
-import java.util.Comparator;
+import java.util.*;
 
 public class KthSmallest {
 
-    public int kthSmallest(int[][] matrix, int k) {
-
-        class Cell{
-            int row;
-            int col;
-            int val;
-
-            public Cell(int row, int col, int val) {
-                this.row = row;
-                this.col = col;
-                this.val = val;
-            }
+    // minHeap
+    // TC: O(nlogn + klogn)
+    // SC: O(n)
+    public int[] kthSmallestMin(int[] array, int k) {
+        if (array == null || array.length == 0 || k == 0) {
+            return new int[0];
+        }
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        for (int i = 0; i < array.length; i++) {
+            minHeap.offer(array[i]);
         }
 
-
-        int rows = matrix.length;
-        int cols = matrix[0].length;
-
-        PriorityQueue<Cell> minHeap = new PriorityQueue<>(k, new Comparator<Cell>(){
-            @Override
-            public int compare(Cell o1, Cell o2) {
-                if (o1.val == o2.val) {
-                    return 0;
-                }
-                return o1.val < o2.val ? -1 : 1;
-            }
-        });
-
-        minHeap.offer(new Cell(0,0,matrix[0][0]));
-        boolean[][] visited = new boolean[rows][cols];
-        visited[0][0] = true;
-
-        while (k > 1) {
-            Cell cur = minHeap.poll();
-            if (cur.row + 1 < rows && !visited[cur.row + 1][cur.col]) {
-                minHeap.offer(new Cell(cur.row + 1, cur.col, matrix[cur.row + 1][cur.col]));
-                visited[cur.row + 1][cur.col] = true;
-            }
-
-            if (cur.col + 1 < cols && !visited[cur.row][cur.col + 1]) {
-                minHeap.offer(new Cell(cur.row, cur.col + 1, matrix[cur.row][cur.col + 1]));
-                visited[cur.row][cur.col + 1] = true;
-            }
-            k--;
+        int[] result = new int[k];
+        for (int i = 0; i < k; i++) {
+            result[i] = minHeap.poll();
         }
 
-        return minHeap.poll().val;
+        return result;
     }
+
+    // maxHeap
+    // TC: klogk + (n-k)logk + klogk
+    // SC: O(k)
+
+    public int[] kthSmallestMax(int[] array, int k) {
+
+        if (array == null || array.length == 0 || k == 0) {
+            return new int[0];
+        }
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(k, Collections.reverseOrder());
+
+        for (int i = 0; i < array.length; i++) {
+            if (i < k) {
+                maxHeap.offer(array[i]);
+            } else if (array[i] < maxHeap.peek()) {
+                maxHeap.poll();
+                maxHeap.offer(array[i]);
+            }
+
+        }
+
+        int[] result = new int[k];
+        for (int i = k - 1; i >= 0; i--) {
+            result[i] = maxHeap.poll();
+        }
+        return result;
+
+    }
+
+    // Quick Select
+    // TC: Best O(n) Worst O(n^2)
+    // SC: O(logn)
+
+    public int[] kthSmallestQS(int[] array, int k) {
+        // Write your solution here
+        // corner case
+        if (array == null || array.length == 0 || k == 0) {
+            return new int[0];
+        }
+
+        quickSelect(array, 0, array.length - 1, k - 1);
+        int[] result = new int[k];
+        result = Arrays.copyOf(array, k);
+        Arrays.sort(result);
+        return result;
+    }
+
+    // return k smallest element, unsorted
+    private void quickSelect(int[] array, int left, int right, int target) {
+        int mid = partition(array, left, right);
+
+        if (mid == target) {
+            return;
+        } else if (target < mid) {
+            quickSelect(array, left, mid - 1, target);
+        } else {
+            quickSelect(array, mid + 1, right, target);
+        }
+    }
+
+    private int partition(int[] array, int left, int right) {
+        int pivotValue = array[right];
+
+        int i = left;
+        int j = right - 1;
+        while (i <= j) {
+            if (array[i] < pivotValue) {
+                i++;
+            } else if (array[j] >= pivotValue) {
+                j--;
+            } else {
+                swap(array, i++, j--);
+            }
+        }
+        swap(array, i, right);
+        return i;
+    }
+
+    private void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
 
     public static void main(String[] args) {
-        KthSmallest obj = new KthSmallest();
-        int[][] matrix = {{1,2,3,4},{11,12,13,14},{15,16,17,18},{19,20,21,22}};
-        int k = 4;
-        int smallest = obj.kthSmallest(matrix, k);
-        System.out.println(smallest);
+        KthSmallest solution = new KthSmallest();
+        int[] array = {3,4,1,2,5};
+        int k = 3;
+        array = solution.kthSmallestQS(array, k);
+        System.out.println(Arrays.toString(array));
     }
 }
-
-// TC: O(klogk) -- heap.offer() logk
-// SC: O(mn + k) -- visited[][] + heap

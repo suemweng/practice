@@ -8,7 +8,7 @@
  * The input arrayOfArrays is not null, none of the arrays is null either.
  */
 
-package Class2.QueueStack;
+package Class2.BFS;
 
 import java.util.Arrays;
 import java.util.Comparator;
