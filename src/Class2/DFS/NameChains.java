@@ -51,8 +51,8 @@ public class NameChains {
     private boolean dfs(int index, String[] names) {
 
         // base case
-        if (index == names.length - 1) {
-            return canSit(names[index], names[0]);
+        if (index == names.length) {
+            return canSit(names[index - 1], names[0]);
         }
 
 

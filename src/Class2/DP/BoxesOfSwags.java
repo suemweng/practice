@@ -67,9 +67,9 @@ public class BoxesOfSwags {
         // dp[i] represents the minimum boxes for number i
         int[] dp = new int[number + 1];
         dp[0] = 0;
-        dp[1] = 0;
+        dp[1] = 1;
 
-        for (int i = 0; i <= number; i++) {
+        for (int i = 2; i <= number; i++) {
             if (validBoxSize(i)) {
                 dp[i] = 1;
                 continue;
@@ -101,10 +101,11 @@ public class BoxesOfSwags {
 
         // dp[i] represents the minimum boxes for number i
         int[] dp = new int[number + 1];
-        Arrays.fill(dp, Integer.MAX_VALUE);
+        //Arrays.fill(dp, Integer.MAX_VALUE);
         dp[0] = 0;
 
         for (int i = 1; i <= number; i++) {
+            dp[i] = i;
             for (int j = 1; j * j <= i; j++) {
                 dp[i] = Math.min(dp[i], dp[i - j * j] + 1) ;
             }
@@ -116,6 +117,6 @@ public class BoxesOfSwags {
     public static void main(String[] args) {
         BoxesOfSwags obj = new BoxesOfSwags();
 
-        System.out.println(obj.minBoxesII(40));
+        System.out.println(obj.minBoxesII(99));
     }
 }

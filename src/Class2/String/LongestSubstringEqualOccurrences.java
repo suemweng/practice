@@ -1,15 +1,13 @@
 /**
- * Laicode 398. All Anagrams
+ * You are giving a string S consisting of N lowercase letters of the English alphabet.
+ * Find the length of the longest substring of S in which the number of occurranes of
+ * each letter is equal.
  *
- * Find all occurrence of anagrams of a given string s in a given string l. Return the list of starting indices.
+ * For example, given S = "ababbcba", substrings in which every letter occurs the same number
+ * of times are: "a", "b", "c", "ab", "ba", "bb", "bc", "cb", "abab" and "bcbc". The longest
+ * among them are "abab" and "bcb" and their length equals 4.
  *
- * Assumptions
- *
- * sh is not null or empty.
- * lo is not null.
- * Examples
- *
- * l = "abcbac", s = "ab", return [0, 3] since the substring with length 2 starting from index 0/3 are all anagrams of "ab" ("ab", "ba").
+ * W
  */
 
 package Class2.String;
